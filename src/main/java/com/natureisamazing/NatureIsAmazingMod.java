@@ -5,6 +5,7 @@ import com.natureisamazing.ai.cow.CowAIHandler;
 import com.natureisamazing.ai.sheep.SheepAIHandler;
 import com.natureisamazing.ai.wolf.WolfDayCycleHandler;
 import com.natureisamazing.ai.wolf.WolfHungerHandler;
+import com.natureisamazing.ai.wolf.WolfPackHandler;
 import com.natureisamazing.ai.wolf.WolfSleepHandler;
 import com.natureisamazing.animatable.SleepingWolfAnimatable;
 import com.natureisamazing.data.ModAttachments;
@@ -26,9 +27,11 @@ public final class NatureIsAmazingMod {
         ModAttachments.ATTACHMENTS.register(modEventBus);
 
         // Register gameplay event handlers on the NeoForge event bus.
-        NeoForge.EVENT_BUS.register(new WolfHungerHandler());
+        WolfPackHandler wolfPackHandler = new WolfPackHandler();
+        NeoForge.EVENT_BUS.register(wolfPackHandler);
+        NeoForge.EVENT_BUS.register(new WolfHungerHandler(wolfPackHandler));
         NeoForge.EVENT_BUS.register(new WolfDayCycleHandler());
-        NeoForge.EVENT_BUS.register(new WolfSleepHandler());
+        NeoForge.EVENT_BUS.register(new WolfSleepHandler(wolfPackHandler));
         NeoForge.EVENT_BUS.register(new ChickenAIHandler());
         NeoForge.EVENT_BUS.register(new SheepAIHandler());
         NeoForge.EVENT_BUS.register(new CowAIHandler());

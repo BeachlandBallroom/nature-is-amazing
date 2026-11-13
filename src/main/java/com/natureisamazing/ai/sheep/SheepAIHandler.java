@@ -40,8 +40,15 @@ public final class SheepAIHandler {
                 )
         );
 
-        // Adults loosely group together. Baby sheep continue to use vanilla parent-following AI.
+        // Rams take brief defensive charges when a wolf threatens lambs. This
+        // is higher priority than fleeing, but only at close range.
+        if (SheepHerdBehavior.isRam(sheep) && !sheep.isBaby()) {
+            sheep.goalSelector.addGoal(-2, new RamGuardGoal(sheep));
+        }
+
+        // Adults form loose flocks; lambs continue to use vanilla parent-following AI.
         sheep.goalSelector.addGoal(4, new FollowSheepGoal(sheep));
+        sheep.goalSelector.addGoal(7, new SheepPastureGoal(sheep));
 
         sheep.setData(ModAttachments.SHEEP_GOALS_INSTALLED, true);
     }

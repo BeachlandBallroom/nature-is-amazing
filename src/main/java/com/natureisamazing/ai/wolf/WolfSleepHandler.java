@@ -10,7 +10,12 @@ import java.util.WeakHashMap;
 
 /** Installs the daytime sleep goal on each server-side vanilla wolf once. */
 public final class WolfSleepHandler {
+    private final WolfPackHandler packHandler;
     private final Set<Wolf> configuredWolves = Collections.newSetFromMap(new WeakHashMap<>());
+
+    public WolfSleepHandler(WolfPackHandler packHandler) {
+        this.packHandler = packHandler;
+    }
 
     @SubscribeEvent
     public void onEntityJoinLevel(EntityJoinLevelEvent event) {
@@ -19,7 +24,10 @@ public final class WolfSleepHandler {
         }
 
         if (configuredWolves.add(wolf)) {
-            wolf.goalSelector.addGoal(1, new WolfDaySleepGoal(wolf));
+            wolf.goalSelector.addGoal(0, new WolfEatDroppedMeatGoal(wolf, this.packHandler));
+            // A completed hunt takes precedence over routine daytime sleep.
+            wolf.goalSelector.addGoal(1, new WolfPostHuntRestGoal(wolf));
+            wolf.goalSelector.addGoal(2, new WolfDaySleepGoal(wolf));
         }
     }
 }

@@ -7,9 +7,10 @@ import java.util.Comparator;
 import java.util.EnumSet;
 
 /**
- * A lightweight flock-following goal for adult chickens.
+ * A lightweight flock-following goal for adult sheep.
  *
- * Each chicken follows the nearest nearby adult chicken with a lower UUID.
+ * Ewes form mixed-age flocks, while rams prefer other rams as a loose
+ * bachelor group outside the breeding season.
  * This ordering prevents circular follow relationships. It creates loose,
  * dynamic groups rather than persistent named flocks.
  */
@@ -33,7 +34,7 @@ public final class FollowSheepGoal extends Goal {
 
     @Override
     public boolean canUse() {
-        // Baby chickens already use vanilla FollowParentGoal.
+        // Lambs already use vanilla FollowParentGoal.
         if (sheep.isBaby()) {
             return false;
         }
@@ -50,6 +51,7 @@ public final class FollowSheepGoal extends Goal {
                         candidate -> candidate != sheep
                                 && candidate.isAlive()
                                 && !candidate.isBaby()
+                                && SheepHerdBehavior.isRam(candidate) == SheepHerdBehavior.isRam(sheep)
                                 && candidate.getUUID().compareTo(sheep.getUUID()) < 0
                 )
                 .stream()

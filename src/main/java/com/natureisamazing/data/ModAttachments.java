@@ -26,6 +26,38 @@ public final class ModAttachments {
                     .build()
     );
 
+    /** Persistent identifier of the wild wolf pack this wolf belongs to. */
+    public static final Supplier<AttachmentType<String>> WOLF_PACK_ID = ATTACHMENTS.register(
+            "wolf_pack_id",
+            () -> AttachmentType.builder(() -> "")
+                    .serialize(Codec.STRING)
+                    .build()
+    );
+
+    /** Game tick until which a wolf rests after a successful pack hunt. */
+    public static final Supplier<AttachmentType<Long>> WOLF_REST_UNTIL = ATTACHMENTS.register(
+            "wolf_rest_until",
+            () -> AttachmentType.builder(() -> 0L)
+                    .serialize(Codec.LONG)
+                    .build()
+    );
+
+    /** Number of consecutive game ticks a wolf has spent critically hungry. */
+    public static final Supplier<AttachmentType<Integer>> WOLF_STARVATION_TICKS = ATTACHMENTS.register(
+            "wolf_starvation_ticks",
+            () -> AttachmentType.builder(() -> 0)
+                    .serialize(Codec.INT)
+                    .build()
+    );
+
+    /** Deadline for collecting meat dropped by the wolf's most recent prey. */
+    public static final Supplier<AttachmentType<Long>> WOLF_MEAL_UNTIL = ATTACHMENTS.register(
+            "wolf_meal_until",
+            () -> AttachmentType.builder(() -> 0L)
+                    .serialize(Codec.LONG)
+                    .build()
+    );
+
     /**
      * Runtime-only guard to avoid installing the chicken goals more than once
      * on the same entity instance. It is intentionally not serialized because

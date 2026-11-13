@@ -1,5 +1,6 @@
 package com.natureisamazing.ai.wolf;
 
+import com.natureisamazing.data.ModAttachments;
 import com.natureisamazing.api.WolfSleepState;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.animal.Wolf;
@@ -35,6 +36,7 @@ public final class WolfDaySleepGoal extends Goal {
                 && !this.wolf.isPassenger()
                 && this.wolf.getTarget() == null
                 && this.wolf.hurtTime == 0
+                && this.wolf.level().getGameTime() >= this.wolf.getData(ModAttachments.WOLF_MEAL_UNTIL)
                 // Wolves first use WolfDayCycleHandler to reach shade. Without
                 // this condition the high-priority sleep goal starts outdoors
                 // and immediately cancels its own navigation every tick.
