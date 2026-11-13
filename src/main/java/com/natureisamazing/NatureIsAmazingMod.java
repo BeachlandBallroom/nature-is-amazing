@@ -2,6 +2,7 @@ package com.natureisamazing;
 
 import com.natureisamazing.ai.chicken.ChickenAIHandler;
 import com.natureisamazing.ai.cow.CowAIHandler;
+import com.natureisamazing.ai.cow.CowNutritionHandler;
 import com.natureisamazing.ai.sheep.SheepAIHandler;
 import com.natureisamazing.ai.sheep.SheepNutritionHandler;
 import com.natureisamazing.ai.wolf.WolfDayCycleHandler;
@@ -37,5 +38,6 @@ public final class NatureIsAmazingMod {
         NeoForge.EVENT_BUS.register(new SheepAIHandler());
         NeoForge.EVENT_BUS.register(new SheepNutritionHandler());
         NeoForge.EVENT_BUS.register(new CowAIHandler());
+        NeoForge.EVENT_BUS.register(new CowNutritionHandler());
     }
 }

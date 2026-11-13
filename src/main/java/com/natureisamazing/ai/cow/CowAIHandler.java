@@ -1,5 +1,6 @@
 package com.natureisamazing.ai.cow;
 
+import com.natureisamazing.ai.cow.CowPastureGoal;
 import com.natureisamazing.data.ModAttachments;
 import net.minecraft.world.entity.animal.Cow;
 import net.minecraft.world.entity.animal.Wolf;
@@ -42,6 +43,7 @@ public final class CowAIHandler {
 
         // Adults loosely group together. Baby cow continue to use vanilla parent-following AI.
         cow.goalSelector.addGoal(4, new FollowCowGoal(cow));
+        cow.goalSelector.addGoal(7, new CowPastureGoal(cow));
 
         cow.setData(ModAttachments.COW_GOALS_INSTALLED, true);
     }
