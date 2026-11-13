@@ -1,6 +1,7 @@
 package com.natureisamazing;
 
 import com.natureisamazing.ai.chicken.ChickenAIHandler;
+import com.natureisamazing.ai.cow.CowAIHandler;
 import com.natureisamazing.ai.sheep.SheepAIHandler;
 import com.natureisamazing.ai.wolf.WolfHungerHandler;
 import com.natureisamazing.data.ModAttachments;
@@ -23,5 +24,6 @@ public final class NatureIsAmazingMod {
         NeoForge.EVENT_BUS.register(new WolfHungerHandler());
         NeoForge.EVENT_BUS.register(new ChickenAIHandler());
         NeoForge.EVENT_BUS.register(new SheepAIHandler());
+        NeoForge.EVENT_BUS.register(new CowAIHandler());
     }
 }
