@@ -1,6 +1,7 @@
 package com.natureisamazing;
 
 import com.natureisamazing.ai.chicken.ChickenAIHandler;
+import com.natureisamazing.ai.sheep.SheepAIHandler;
 import com.natureisamazing.ai.wolf.WolfHungerHandler;
 import com.natureisamazing.data.ModAttachments;
 import net.neoforged.bus.api.IEventBus;
@@ -21,5 +22,6 @@ public final class NatureIsAmazingMod {
         // Register gameplay event handlers on the NeoForge event bus.
         NeoForge.EVENT_BUS.register(new WolfHungerHandler());
         NeoForge.EVENT_BUS.register(new ChickenAIHandler());
+        NeoForge.EVENT_BUS.register(new SheepAIHandler());
     }
 }
