@@ -3,7 +3,8 @@
   "package": "com.natureisamazing.mixins",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "WolfMixin"
+    "WolfMixin",
+    "SheepMixin"
   ],
   "client": [],
   "server": [],

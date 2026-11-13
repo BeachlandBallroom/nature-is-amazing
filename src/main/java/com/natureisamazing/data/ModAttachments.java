@@ -58,6 +58,14 @@ public final class ModAttachments {
                     .build()
     );
 
+    /** Satiety of a sheep, from 0 (starving) to 100 (full). */
+    public static final Supplier<AttachmentType<Integer>> SHEEP_HUNGER = ATTACHMENTS.register(
+            "sheep_hunger",
+            () -> AttachmentType.builder(() -> 100)
+                    .serialize(Codec.INT)
+                    .build()
+    );
+
     /**
      * Runtime-only guard to avoid installing the chicken goals more than once
      * on the same entity instance. It is intentionally not serialized because

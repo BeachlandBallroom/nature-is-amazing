@@ -10,8 +10,8 @@ import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 /** Installs additional goals on vanilla sheep on the logical server. */
 public final class SheepAIHandler {
     private static final float WOLF_DETECTION_DISTANCE = 15.0F;
-    private static final double FLEE_SPEED = 1.4D;
-    private static final double FLEE_SPRINT_SPEED = 1.8D;
+    private static final double FLEE_SPEED = 1.2D;
+    private static final double FLEE_SPRINT_SPEED = 1.4D;
 
     @SubscribeEvent
     public void onSheepJoinLevel(EntityJoinLevelEvent event) {
