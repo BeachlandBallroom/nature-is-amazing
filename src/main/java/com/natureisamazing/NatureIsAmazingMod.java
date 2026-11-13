@@ -3,7 +3,10 @@ package com.natureisamazing;
 import com.natureisamazing.ai.chicken.ChickenAIHandler;
 import com.natureisamazing.ai.cow.CowAIHandler;
 import com.natureisamazing.ai.sheep.SheepAIHandler;
+import com.natureisamazing.ai.wolf.WolfDayCycleHandler;
 import com.natureisamazing.ai.wolf.WolfHungerHandler;
+import com.natureisamazing.ai.wolf.WolfSleepHandler;
+import com.natureisamazing.animatable.SleepingWolfAnimatable;
 import com.natureisamazing.data.ModAttachments;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
@@ -16,12 +19,16 @@ import net.neoforged.neoforge.common.NeoForge;
 public final class NatureIsAmazingMod {
     public static final String MOD_ID = "natureisamazing";
 
+    public static final SleepingWolfAnimatable SLEEPING_WOLF = new SleepingWolfAnimatable();
+
     public NatureIsAmazingMod(IEventBus modEventBus) {
         // Register custom entity data attachments on the mod event bus.
         ModAttachments.ATTACHMENTS.register(modEventBus);
 
         // Register gameplay event handlers on the NeoForge event bus.
         NeoForge.EVENT_BUS.register(new WolfHungerHandler());
+        NeoForge.EVENT_BUS.register(new WolfDayCycleHandler());
+        NeoForge.EVENT_BUS.register(new WolfSleepHandler());
         NeoForge.EVENT_BUS.register(new ChickenAIHandler());
         NeoForge.EVENT_BUS.register(new SheepAIHandler());
         NeoForge.EVENT_BUS.register(new CowAIHandler());

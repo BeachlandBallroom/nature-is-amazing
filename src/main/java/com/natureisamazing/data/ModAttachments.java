@@ -42,7 +42,7 @@ public final class ModAttachments {
     );
 
     public static final Supplier<AttachmentType<Boolean>> COW_GOALS_INSTALLED = ATTACHMENTS.register(
-            "sheep_goals_installed",
+            "cow_goals_installed",
             () -> AttachmentType.builder(() -> false).build()
     );
 
