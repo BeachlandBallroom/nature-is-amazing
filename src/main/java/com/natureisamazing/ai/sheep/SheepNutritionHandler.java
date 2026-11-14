@@ -4,13 +4,15 @@ import com.natureisamazing.data.ModAttachments;
 import net.minecraft.world.entity.animal.Sheep;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.entity.living.BabyEntitySpawnEvent;
+import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.tick.EntityTickEvent;
 
-/** Applies the slow hunger drain and nutrition-gated sheep breeding. */
+/** Applies sheep nutrition, breeding checks, and low-frequency stress updates. */
 public final class SheepNutritionHandler {
     private static final int SATIETY_DECAY_INTERVAL_TICKS = 300;
     private static final int NATURAL_BREEDING_CHECK_INTERVAL_TICKS = 200;
     private static final double MATE_SEARCH_RADIUS = 8.0D;
+    private static final int STRESS_UPDATE_INTERVAL_TICKS = 200;
 
     @SubscribeEvent
     public void onSheepTick(EntityTickEvent.Post event) {
@@ -28,6 +30,29 @@ public final class SheepNutritionHandler {
         if (sheep.tickCount % NATURAL_BREEDING_CHECK_INTERVAL_TICKS == 0) {
             tryStartNaturalBreeding(sheep);
         }
+
+        // Spread local-entity queries across the 10-second interval instead of
+        // making every sheep scan its surroundings on the same server tick.
+        int stressPhase = Math.floorMod(sheep.getId(), STRESS_UPDATE_INTERVAL_TICKS);
+        if (Math.floorMod(sheep.tickCount, STRESS_UPDATE_INTERVAL_TICKS) == stressPhase) {
+            SheepStress.updateFromEnvironment(sheep);
+        }
+    }
+
+    @SubscribeEvent
+    public void onSheepDamaged(LivingDamageEvent.Post event) {
+        if (!(event.getEntity() instanceof Sheep sheep) || sheep.level().isClientSide) {
+            return;
+        }
+
+        float actualDamage = event.getNewDamage();
+        if (actualDamage <= 0.0F) {
+            return;
+        }
+
+        // Minor bumps still cause a small reaction; a heavy hit is capped.
+        int stressIncrease = Math.max(6, Math.min(25, Math.round(actualDamage * 5.0F)));
+        SheepStress.addStress(sheep, stressIncrease);
     }
 
     @SubscribeEvent

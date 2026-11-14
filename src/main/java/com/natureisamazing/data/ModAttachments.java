@@ -67,6 +67,17 @@ public final class ModAttachments {
     );
 
     /**
+     * Environmental stress of a sheep, from 0 (calm) to 100 (very stressed).
+     * This is persistent so a sheep keeps its condition after being unloaded.
+     */
+    public static final Supplier<AttachmentType<Integer>> SHEEP_STRESS = ATTACHMENTS.register(
+            "sheep_stress",
+            () -> AttachmentType.builder(() -> 0)
+                    .serialize(Codec.INT)
+                    .build()
+    );
+
+    /**
      * Runtime-only guard to avoid installing the chicken goals more than once
      * on the same entity instance. It is intentionally not serialized because
      * AI goals themselves are recreated when an entity is loaded from disk.

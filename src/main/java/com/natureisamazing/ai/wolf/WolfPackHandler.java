@@ -23,7 +23,7 @@ public final class WolfPackHandler {
     private static final double PACK_JOIN_RADIUS = 24.0D;
     private static final double HUNT_SHARE_RADIUS = 28.0D;
     private static final double MAX_PURSUIT_DISTANCE = 48.0D;
-    private static final double TERRITORY_RADIUS = 32.0D;
+    private static final double TERRITORY_RADIUS = 100.0D;
     private static final double DEFENCE_RADIUS = 16.0D;
     private static final long REST_AFTER_HUNT_TICKS = 600L;
 
