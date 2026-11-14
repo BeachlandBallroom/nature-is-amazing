@@ -23,7 +23,7 @@ public final class WolfPackHandler {
     private static final double PACK_JOIN_RADIUS = 24.0D;
     private static final double HUNT_SHARE_RADIUS = 28.0D;
     private static final double MAX_PURSUIT_DISTANCE = 48.0D;
-    private static final double TERRITORY_RADIUS = 100.0D;
+    static final double TERRITORY_RADIUS = 32.0D;
     private static final double DEFENCE_RADIUS = 16.0D;
     private static final long REST_AFTER_HUNT_TICKS = 600L;
 
@@ -36,7 +36,7 @@ public final class WolfPackHandler {
         }
 
         String packId = getOrCreatePackId(wolf);
-        this.territories.putIfAbsent(packId, wolf.blockPosition().immutable());
+        getOrCreateTerritoryCenter(wolf, packId);
     }
 
     @SubscribeEvent
@@ -52,7 +52,7 @@ public final class WolfPackHandler {
         }
 
         String packId = getOrCreatePackId(wolf);
-        this.territories.putIfAbsent(packId, wolf.blockPosition().immutable());
+        getOrCreateTerritoryCenter(wolf, packId);
 
         if (wolf.hurtTime > 0) {
             wolf.setData(ModAttachments.WOLF_REST_UNTIL, 0L);
@@ -117,8 +117,46 @@ public final class WolfPackHandler {
         }
     }
 
+    /**
+     * Returns the stable home position used by this wild wolf's pack patrol.
+     * The center is stored on the wolf as a packed BlockPos so it survives saves.
+     */
+    public BlockPos getTerritoryCenter(Wolf wolf) {
+        if (wolf.level().isClientSide || wolf.isTame()) {
+            return null;
+        }
+
+        String packId = getOrCreatePackId(wolf);
+        return getOrCreateTerritoryCenter(wolf, packId);
+    }
+
+    private BlockPos getOrCreateTerritoryCenter(Wolf wolf, String packId) {
+        String key = territoryKey(wolf, packId);
+        long packedCenter = wolf.getData(ModAttachments.WOLF_TERRITORY_CENTER);
+
+        // A saved center is authoritative. This also restores the runtime map
+        // when the first member of a pack is loaded after a server restart.
+        if (packedCenter != Long.MIN_VALUE) {
+            BlockPos savedCenter = BlockPos.of(packedCenter).immutable();
+            this.territories.put(key, savedCenter);
+            return savedCenter;
+        }
+
+        BlockPos center = this.territories.computeIfAbsent(
+                key, ignored -> wolf.blockPosition().immutable()
+        );
+        wolf.setData(ModAttachments.WOLF_TERRITORY_CENTER, center.asLong());
+        return center;
+    }
+
+    private String territoryKey(Wolf wolf, String packId) {
+        // Pack ids are saved on wolves; including the dimension prevents
+        // unrelated packs in different dimensions from sharing one center.
+        return wolf.level().dimension().location() + "|" + packId;
+    }
+
     private void defendTerritory(Wolf wolf, String packId) {
-        BlockPos territoryCenter = this.territories.get(packId);
+        BlockPos territoryCenter = getOrCreateTerritoryCenter(wolf, packId);
         if (territoryCenter == null
                 || wolf.distanceToSqr(territoryCenter.getX() + 0.5D, territoryCenter.getY(), territoryCenter.getZ() + 0.5D)
                 > TERRITORY_RADIUS * TERRITORY_RADIUS) {

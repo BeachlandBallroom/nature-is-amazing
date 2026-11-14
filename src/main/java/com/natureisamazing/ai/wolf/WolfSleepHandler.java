@@ -28,6 +28,9 @@ public final class WolfSleepHandler {
             // A completed hunt takes precedence over routine daytime sleep.
             wolf.goalSelector.addGoal(1, new WolfPostHuntRestGoal(wolf));
             wolf.goalSelector.addGoal(2, new WolfDaySleepGoal(wolf));
+            // Priority 6: patrol takes over idle wandering, but attacks,
+            // swimming, sleeping and eating still interrupt it.
+            wolf.goalSelector.addGoal(6, new WolfPatrolGoal(wolf, this.packHandler));
         }
     }
 }

@@ -34,6 +34,18 @@ public final class ModAttachments {
                     .build()
     );
 
+    /**
+     * Packed BlockPos of the home territory center shared by a wild pack.
+     * Long.MIN_VALUE means that this wolf has not been assigned a territory yet.
+     * Persisting it on each wolf lets the pack keep its patrol area after relogging.
+     */
+    public static final Supplier<AttachmentType<Long>> WOLF_TERRITORY_CENTER = ATTACHMENTS.register(
+            "wolf_territory_center",
+            () -> AttachmentType.builder(() -> Long.MIN_VALUE)
+                    .serialize(Codec.LONG)
+                    .build()
+    );
+
     /** Game tick until which a wolf rests after a successful pack hunt. */
     public static final Supplier<AttachmentType<Long>> WOLF_REST_UNTIL = ATTACHMENTS.register(
             "wolf_rest_until",
