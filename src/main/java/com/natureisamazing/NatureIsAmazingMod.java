@@ -11,6 +11,8 @@ import com.natureisamazing.ai.wolf.WolfPackHandler;
 import com.natureisamazing.ai.wolf.WolfSleepHandler;
 import com.natureisamazing.animatable.SleepingWolfAnimatable;
 import com.natureisamazing.data.ModAttachments;
+import com.natureisamazing.block.TundraBlocks;
+import com.natureisamazing.worldgen.TundraWorldgen;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.NeoForge;
@@ -27,6 +29,9 @@ public final class NatureIsAmazingMod {
     public NatureIsAmazingMod(IEventBus modEventBus) {
         // Register custom entity data attachments on the mod event bus.
         ModAttachments.ATTACHMENTS.register(modEventBus);
+        TundraBlocks.register(modEventBus);
+        modEventBus.addListener(TundraBlocks::addCreativeTabItems);
+        TundraWorldgen.register(modEventBus);
 
         // Register gameplay event handlers on the NeoForge event bus.
         WolfPackHandler wolfPackHandler = new WolfPackHandler();

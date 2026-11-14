@@ -2,12 +2,18 @@
   "itemGroup.examplemod": "Example Mod Tab",
   "block.examplemod.example_block": "Example Block",
   "item.examplemod.example_item": "Example Item",
-
   "examplemod.configuration.title": "Example Mod Configs",
   "examplemod.configuration.section.examplemod.common.toml": "Example Mod Configs",
   "examplemod.configuration.section.examplemod.common.toml.title": "Example Mod Configs",
   "examplemod.configuration.items": "Item List",
   "examplemod.configuration.logDirtBlock": "Log Dirt Block",
   "examplemod.configuration.magicNumberIntroduction": "Magic Number Text",
-  "examplemod.configuration.magicNumber": "Magic Number"
+  "examplemod.configuration.magicNumber": "Magic Number",
+  "biome.natureisamazing.tundra": "Tundra",
+  "block.natureisamazing.orange_shrub": "Orange Tundra Shrub",
+  "block.natureisamazing.stunted_red_shrub": "Red Tundra Shrub",
+  "block.natureisamazing.yellow_shrub": "Yellow Tundra Shrub",
+  "block.natureisamazing.yellow_moss_carpet": "Yellow Tundra Moss",
+  "block.natureisamazing.dwarfed_spruce_log": "Dwarfed Spruce Log",
+  "block.natureisamazing.stripped_dwarfed_spruce_log": "Stripped Dwarfed Spruce Log"
 }

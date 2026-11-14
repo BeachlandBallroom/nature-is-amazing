@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cross",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "cross": "natureisamazing:block/tundra/stunted_red_shrub"
+  }
+}

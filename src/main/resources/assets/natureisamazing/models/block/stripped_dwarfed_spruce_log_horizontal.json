@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column_horizontal",
+  "textures": {
+    "end": "natureisamazing:block/tundra/stripped_dwarfed_spruce_log_end",
+    "side": "minecraft:block/stripped_spruce_log"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=y": {
+      "model": "natureisamazing:block/stripped_dwarfed_spruce_log"
+    },
+    "axis=z": {
+      "model": "natureisamazing:block/stripped_dwarfed_spruce_log_horizontal",
+      "x": 90
+    },
+    "axis=x": {
+      "model": "natureisamazing:block/stripped_dwarfed_spruce_log_horizontal",
+      "x": 90,
+      "y": 90
+    }
+  }
+}
