@@ -35,6 +35,10 @@ public final class TundraBlocks {
                 .sound(SoundType.WOOD).requiresCorrectToolForDrops();
     }
 
+    private static BlockBehaviour.Properties woolBlockProperties(MapColor color) {
+        return BlockBehaviour.Properties.of().mapColor(color).strength(0.8F).sound(SoundType.WOOL);
+    }
+
     private static final DeferredHolder<
             MapCodec<? extends Block>, MapCodec<TundraShrubBlock>> TUNDRA_SHRUB_CODEC =
             BLOCK_TYPES.register("tundra_shrub", () -> TundraShrubBlock.CODEC);
@@ -45,15 +49,15 @@ public final class TundraBlocks {
             "stunted_red_shrub", () -> new TundraShrubBlock(shrubProperties()));
     public static final DeferredHolder<Block, Block> YELLOW_SHRUB = BLOCKS.register(
             "yellow_shrub", () -> new TundraShrubBlock(shrubProperties()));
+
+    // Only yellow moss is a thin carpet. Wool patches are full 16x16x16 blocks.
     public static final DeferredHolder<Block, Block> YELLOW_MOSS_CARPET = BLOCKS.register(
             "yellow_moss_carpet", () -> new CarpetBlock(
                     BlockBehaviour.Properties.of().noCollission().strength(0.1F).sound(SoundType.WOOL)));
-    public static final DeferredHolder<Block, Block> ORANGE_WOOL_CARPET = BLOCKS.register(
-            "orange_wool_carpet", () -> new CarpetBlock(
-                    BlockBehaviour.Properties.of().noCollission().strength(0.1F).sound(SoundType.WOOL)));
-    public static final DeferredHolder<Block, Block> RED_WOOL_CARPET = BLOCKS.register(
-            "red_wool_carpet", () -> new CarpetBlock(
-                    BlockBehaviour.Properties.of().noCollission().strength(0.1F).sound(SoundType.WOOL)));
+    public static final DeferredHolder<Block, Block> ORANGE_WOOL = BLOCKS.register(
+            "orange_wool", () -> new Block(woolBlockProperties(MapColor.COLOR_ORANGE)));
+    public static final DeferredHolder<Block, Block> RED_WOOL = BLOCKS.register(
+            "red_wool", () -> new Block(woolBlockProperties(MapColor.COLOR_RED)));
 
     public static final DeferredHolder<Block, Block> DWARFED_SPRUCE_LOG = BLOCKS.register(
             "dwarfed_spruce_log", () -> new RotatedPillarBlock(logProperties()));
@@ -64,8 +68,8 @@ public final class TundraBlocks {
     public static final DeferredHolder<Item, Item> STUNTED_RED_SHRUB_ITEM = blockItem("stunted_red_shrub", STUNTED_RED_SHRUB);
     public static final DeferredHolder<Item, Item> YELLOW_SHRUB_ITEM = blockItem("yellow_shrub", YELLOW_SHRUB);
     public static final DeferredHolder<Item, Item> YELLOW_MOSS_CARPET_ITEM = blockItem("yellow_moss_carpet", YELLOW_MOSS_CARPET);
-    public static final DeferredHolder<Item, Item> ORANGE_WOOL_CARPET_ITEM = blockItem("orange_wool_carpet", ORANGE_WOOL_CARPET);
-    public static final DeferredHolder<Item, Item> RED_WOOL_CARPET_ITEM = blockItem("red_wool_carpet", RED_WOOL_CARPET);
+    public static final DeferredHolder<Item, Item> ORANGE_WOOL_ITEM = blockItem("orange_wool", ORANGE_WOOL);
+    public static final DeferredHolder<Item, Item> RED_WOOL_ITEM = blockItem("red_wool", RED_WOOL);
     public static final DeferredHolder<Item, Item> DWARFED_SPRUCE_LOG_ITEM = blockItem("dwarfed_spruce_log", DWARFED_SPRUCE_LOG);
     public static final DeferredHolder<Item, Item> STRIPPED_DWARFED_SPRUCE_LOG_ITEM = blockItem("stripped_dwarfed_spruce_log", STRIPPED_DWARFED_SPRUCE_LOG);
 
@@ -88,10 +92,10 @@ public final class TundraBlocks {
             event.accept(STUNTED_RED_SHRUB_ITEM.get());
             event.accept(YELLOW_SHRUB_ITEM.get());
             event.accept(YELLOW_MOSS_CARPET_ITEM.get());
-            event.accept(ORANGE_WOOL_CARPET_ITEM.get());
-            event.accept(RED_WOOL_CARPET_ITEM.get());
         }
         if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
+            event.accept(ORANGE_WOOL_ITEM.get());
+            event.accept(RED_WOOL_ITEM.get());
             event.accept(DWARFED_SPRUCE_LOG_ITEM.get());
             event.accept(STRIPPED_DWARFED_SPRUCE_LOG_ITEM.get());
         }

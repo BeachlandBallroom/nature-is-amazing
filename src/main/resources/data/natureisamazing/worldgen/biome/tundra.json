@@ -10,7 +10,7 @@
   "downfall": 0.35,
   "effects": {
     "fog_color": 12638463,
-    "grass_color": 10596543,
+    "grass_color": 10849114,
     "foliage_color": 8680568,
     "mood_sound": {
       "block_search_extent": 8,
@@ -66,9 +66,7 @@
       "minecraft:underwater_magma",
       "minecraft:disk_sand",
       "minecraft:disk_clay",
-      "minecraft:disk_gravel",
-      "natureisamazing:tundra_iron_ore",
-      "natureisamazing:tundra_surface_basalt"
+      "minecraft:disk_gravel"
     ],
     [
       "natureisamazing:tundra_iron_ore",
@@ -80,16 +78,17 @@
     ],
     [
       "minecraft:glow_lichen",
-      "natureisamazing:tundra_dwarfed_spruce",
+      "natureisamazing:tundra_brown_ground_patch",
+      "natureisamazing:tundra_orange_wool_patch",
+      "natureisamazing:tundra_red_wool_patch",
+      "natureisamazing:tundra_brown_grass",
+      "natureisamazing:tundra_yellow_moss",
       "natureisamazing:tundra_orange_shrub",
       "natureisamazing:tundra_stunted_red_shrub",
       "natureisamazing:tundra_yellow_shrub",
-      "natureisamazing:tundra_yellow_moss",
+      "natureisamazing:tundra_dwarfed_spruce",
       "minecraft:brown_mushroom_normal",
-      "minecraft:red_mushroom_normal",
-      "natureisamazing:tundra_brown_ground_patch",
-      "natureisamazing:tundra_orange_wool_patch",
-      "natureisamazing:tundra_red_wool_patch"
+      "minecraft:red_mushroom_normal"
     ],
     []
   ],

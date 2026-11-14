@@ -1,11 +1,26 @@
 {
-  "type": "minecraft:simple_block",
+  "type": "minecraft:disk",
   "config": {
-    "to_place": {
-      "type": "minecraft:simple_state_provider",
-      "state": {
-        "Name": "natureisamazing:orange_wool_carpet"
-      }
+    "half_height": 0,
+    "radius": {
+      "type": "minecraft:uniform",
+      "min_inclusive": 3,
+      "max_inclusive": 4
+    },
+    "state_provider": {
+      "fallback": {
+        "type": "minecraft:simple_state_provider",
+        "state": {
+          "Name": "natureisamazing:orange_wool"
+        }
+      },
+      "rules": []
+    },
+    "target": {
+      "type": "minecraft:matching_blocks",
+      "blocks": [
+        "minecraft:grass_block"
+      ]
     }
   }
 }

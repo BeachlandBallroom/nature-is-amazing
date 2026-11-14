@@ -2,8 +2,8 @@
   "feature": "natureisamazing:tundra_brown_ground_patch",
   "placement": [
     {
-      "type": "minecraft:count",
-      "count": 4
+      "type": "minecraft:rarity_filter",
+      "chance": 3
     },
     {
       "type": "minecraft:in_square"
@@ -14,18 +14,7 @@
     },
     {
       "type": "minecraft:heightmap",
-      "heightmap": "MOTION_BLOCKING"
-    },
-    {
-      "type": "minecraft:block_predicate_filter",
-      "predicate": {
-        "type": "minecraft:matching_blocks",
-        "blocks": [
-          "minecraft:deepslate",
-          "minecraft:smooth_basalt",
-          "minecraft:podzol"
-        ]
-      }
+      "heightmap": "WORLD_SURFACE_WG"
     },
     {
       "type": "minecraft:biome"

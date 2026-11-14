@@ -1,11 +1,30 @@
 {
-  "type": "minecraft:simple_block",
+  "type": "minecraft:disk",
   "config": {
-    "to_place": {
-      "type": "minecraft:simple_state_provider",
-      "state": {
-        "Name": "minecraft:podzol"
-      }
+    "half_height": 1,
+    "radius": {
+      "type": "minecraft:uniform",
+      "min_inclusive": 10,
+      "max_inclusive": 13
+    },
+    "state_provider": {
+      "fallback": {
+        "type": "minecraft:simple_state_provider",
+        "state": {
+          "Name": "minecraft:grass_block",
+          "Properties": {
+            "snowy": "false"
+          }
+        }
+      },
+      "rules": []
+    },
+    "target": {
+      "type": "minecraft:matching_blocks",
+      "blocks": [
+        "minecraft:deepslate",
+        "minecraft:smooth_basalt"
+      ]
     }
   }
 }

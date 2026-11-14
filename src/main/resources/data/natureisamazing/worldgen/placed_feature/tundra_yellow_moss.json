@@ -3,7 +3,7 @@
   "placement": [
     {
       "type": "minecraft:count",
-      "count": 3
+      "count": 2
     },
     {
       "type": "minecraft:in_square"
@@ -15,15 +15,6 @@
     {
       "type": "minecraft:heightmap",
       "heightmap": "MOTION_BLOCKING"
-    },
-    {
-      "type": "minecraft:block_predicate_filter",
-      "predicate": {
-        "type": "minecraft:would_survive",
-        "state": {
-          "Name": "natureisamazing:yellow_moss_carpet"
-        }
-      }
     },
     {
       "type": "minecraft:biome"
