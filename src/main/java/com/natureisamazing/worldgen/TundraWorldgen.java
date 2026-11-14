@@ -6,12 +6,13 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import terrablender.api.Regions;
 
-/** Registers the Tundra's Overworld region after TerraBlender has initialized. */
+/** Registers custom feature types, Tundra surface rules, and the TerraBlender region. */
 public final class TundraWorldgen {
     private TundraWorldgen() {
     }
 
     public static void register(IEventBus modEventBus) {
+        TundraFeatures.FEATURES.register(modEventBus);
         modEventBus.addListener(TundraWorldgen::commonSetup);
     }
 
@@ -21,6 +22,8 @@ public final class TundraWorldgen {
                     ResourceLocation.fromNamespaceAndPath(NatureIsAmazingMod.MOD_ID, "overworld"),
                     5
             ));
+            // Important: the old implementation did not always call this method,
+            // so the deepslate surface material rule could remain inactive.
             TundraSurfaceRules.register();
         });
     }
