@@ -16,9 +16,12 @@ public final class TundraWorldgen {
     }
 
     private static void commonSetup(FMLCommonSetupEvent event) {
-        event.enqueueWork(() -> Regions.register(new TundraRegion(
-                ResourceLocation.fromNamespaceAndPath(NatureIsAmazingMod.MOD_ID, "overworld"),
-                5
-        )));
+        event.enqueueWork(() -> {
+            Regions.register(new TundraRegion(
+                    ResourceLocation.fromNamespaceAndPath(NatureIsAmazingMod.MOD_ID, "overworld"),
+                    5
+            ));
+            TundraSurfaceRules.register();
+        });
     }
 }

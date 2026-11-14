@@ -48,6 +48,12 @@ public final class TundraBlocks {
     public static final DeferredHolder<Block, Block> YELLOW_MOSS_CARPET = BLOCKS.register(
             "yellow_moss_carpet", () -> new CarpetBlock(
                     BlockBehaviour.Properties.of().noCollission().strength(0.1F).sound(SoundType.WOOL)));
+    public static final DeferredHolder<Block, Block> ORANGE_WOOL_CARPET = BLOCKS.register(
+            "orange_wool_carpet", () -> new CarpetBlock(
+                    BlockBehaviour.Properties.of().noCollission().strength(0.1F).sound(SoundType.WOOL)));
+    public static final DeferredHolder<Block, Block> RED_WOOL_CARPET = BLOCKS.register(
+            "red_wool_carpet", () -> new CarpetBlock(
+                    BlockBehaviour.Properties.of().noCollission().strength(0.1F).sound(SoundType.WOOL)));
 
     public static final DeferredHolder<Block, Block> DWARFED_SPRUCE_LOG = BLOCKS.register(
             "dwarfed_spruce_log", () -> new RotatedPillarBlock(logProperties()));
@@ -58,6 +64,8 @@ public final class TundraBlocks {
     public static final DeferredHolder<Item, Item> STUNTED_RED_SHRUB_ITEM = blockItem("stunted_red_shrub", STUNTED_RED_SHRUB);
     public static final DeferredHolder<Item, Item> YELLOW_SHRUB_ITEM = blockItem("yellow_shrub", YELLOW_SHRUB);
     public static final DeferredHolder<Item, Item> YELLOW_MOSS_CARPET_ITEM = blockItem("yellow_moss_carpet", YELLOW_MOSS_CARPET);
+    public static final DeferredHolder<Item, Item> ORANGE_WOOL_CARPET_ITEM = blockItem("orange_wool_carpet", ORANGE_WOOL_CARPET);
+    public static final DeferredHolder<Item, Item> RED_WOOL_CARPET_ITEM = blockItem("red_wool_carpet", RED_WOOL_CARPET);
     public static final DeferredHolder<Item, Item> DWARFED_SPRUCE_LOG_ITEM = blockItem("dwarfed_spruce_log", DWARFED_SPRUCE_LOG);
     public static final DeferredHolder<Item, Item> STRIPPED_DWARFED_SPRUCE_LOG_ITEM = blockItem("stripped_dwarfed_spruce_log", STRIPPED_DWARFED_SPRUCE_LOG);
 
@@ -80,6 +88,8 @@ public final class TundraBlocks {
             event.accept(STUNTED_RED_SHRUB_ITEM.get());
             event.accept(YELLOW_SHRUB_ITEM.get());
             event.accept(YELLOW_MOSS_CARPET_ITEM.get());
+            event.accept(ORANGE_WOOL_CARPET_ITEM.get());
+            event.accept(RED_WOOL_CARPET_ITEM.get());
         }
         if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
             event.accept(DWARFED_SPRUCE_LOG_ITEM.get());

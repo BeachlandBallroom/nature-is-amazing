@@ -2,8 +2,8 @@
   "feature": "natureisamazing:tundra_dwarfed_spruce",
   "placement": [
     {
-      "type": "minecraft:count",
-      "count": 2
+      "type": "minecraft:rarity_filter",
+      "chance": 18
     },
     {
       "type": "minecraft:in_square"
